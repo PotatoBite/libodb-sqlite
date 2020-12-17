@@ -7,7 +7,9 @@ if(MSVC)
 endif()
 
 find_package(libodb REQUIRED NO_MODULE)
-find_package(sqlite3 REQUIRED NO_MODULE)
+#find_package(sqlite3 REQUIRED NO_MODULE)
+FIND_PATH(SQLITE3_INCLUDE_DIR NAMES sqlite3.h)
+FIND_LIBRARY(SQLITE3_LIBRARY NAMES sqlite)
 
 add_library(libodb-sqlite
 ${CMAKE_CURRENT_SOURCE_DIR}/odb/sqlite/traits.cxx
@@ -110,7 +112,8 @@ target_compile_definitions(libodb-sqlite
 target_link_libraries(libodb-sqlite
   PRIVATE
   libodb::libodb
-  sqlite3::sqlite3
+  #sqlite3::sqlite3
+  sqlite3
 )
 
 include(CMakePackageConfigHelpers)
