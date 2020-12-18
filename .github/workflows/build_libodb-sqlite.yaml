@@ -74,6 +74,8 @@ jobs:
     
     - uses: djnicholson/release-action@v2.11
       with:
-        token: ${{ secrets.TOKEN_4_ACTIONS }}
+        token: ${{ secrets.SECRET_4_PUBLISH }}
         asset-name: 'libodb-sqlite.lib'
+        release-name: 'First release'
+        tag-name: 'v2.4-alpha'
         file: 'C:/Program Files (x86)/libodb-sqlite/lib/libodb-sqlite.lib'
