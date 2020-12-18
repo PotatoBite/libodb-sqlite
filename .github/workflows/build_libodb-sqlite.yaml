@@ -71,3 +71,9 @@ jobs:
       shell: bash
       # Execute the build.  You can specify a specific target with "--target <NAME>"
       run: cmake --build libodb-sqlite/build --config $BUILD_TYPE --target install
+    
+    - uses: djnicholson/release-action@v2.11
+      with:
+        token: ${{ secrets.TOKEN_4_ACTIONS }}
+        asset-name: 'libodb-sqlite.lib'
+        file: 'C:/Program Files (x86)/libodb-sqlite/lib/libodb-sqlite.lib'
