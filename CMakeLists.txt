@@ -1,10 +1,14 @@
 cmake_minimum_required(VERSION 3.2)
 
 project(libodb-sqlite VERSION 2.4.0 LANGUAGES CXX)
+#set(CMAKE_CXX_STANDARD 11)
 
 if(MSVC)
   set(CMAKE_DEBUG_POSTFIX d)
 endif()
+
+set (CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS TRUE)
+set (BUILD_SHARED_LIBS TRUE)
 
 find_package(libodb REQUIRED NO_MODULE)
 #FIND_PATH(LIBODB_INCLUDE_DIR NAMES config.h)
@@ -94,6 +98,9 @@ ${CMAKE_CURRENT_SOURCE_DIR}/odb/sqlite/details/conversion.hxx
 ${CMAKE_CURRENT_SOURCE_DIR}/odb/sqlite/details/export.hxx
 )
 
+include(GenerateExportHeader)
+generate_export_header(libodb-sqlite)
+
 target_include_directories(libodb-sqlite
   PRIVATE
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
@@ -110,6 +117,7 @@ target_compile_definitions(libodb-sqlite
   _USRDLL
   LIBODB_SQLITE_DYNAMIC_LIB
   LIBODB_SQLITE_HAVE_UNLOCK_NOTIFY
+  #LIBODB_SQLITE_SHARED_LIB
 )
 
 target_link_libraries(libodb-sqlite
@@ -161,9 +169,9 @@ export(TARGETS libodb-sqlite
   NAMESPACE ${PROJECT_NAME}::
 )
 
-if(MSVC AND BUILD_SHARED_LIBS)
-  install(FILES
-    $<TARGET_PDB_FILE:${PROJECT_NAME}>
-    DESTINATION lib
-  )
-endif()
+#if(MSVC AND BUILD_SHARED_LIBS)
+#  install(FILES
+#    $<TARGET_PDB_FILE:${PROJECT_NAME}>
+#    DESTINATION lib
+#  )
+#endif()
