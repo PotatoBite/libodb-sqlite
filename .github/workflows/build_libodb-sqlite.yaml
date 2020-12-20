@@ -76,6 +76,6 @@ jobs:
       with:
         token: ${{ secrets.SECRET_4_PUBLISH }}
         asset-name: 'libodb-sqlite.lib'
-        release-name: 'First release'
-        tag-name: 'v2.4-alpha'
+        release-name: 'Static release'
+        tag-name: 'v2.4.0-static'
         file: 'C:/Program Files (x86)/libodb-sqlite/lib/libodb-sqlite.lib'
